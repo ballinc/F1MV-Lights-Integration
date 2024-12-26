@@ -166,6 +166,8 @@ export const defaultConfig: IConfig = {
     g: 255,
     b: 255,
   },
+  goBackToStaticColorLeaderColor: true,
+  effectsEnabled: true,
   multiviewerLiveTimingURL: "http://localhost:10101",
   multiviewerCheck: true,
   philipsHueEnabled: false,

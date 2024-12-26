@@ -9,6 +9,7 @@ import { philipsHueControl } from "./integrations/philipsHue/api";
 import { streamdeckControl } from "./integrations/streamdeck/api";
 import { tradfriControl } from "./integrations/tradfri/api";
 import { webServerControl } from "./integrations/webserver/api";
+import { addEffect, removeEffect } from "./effectController";
 
 export enum ControlType {
   On = "On",
@@ -49,6 +50,15 @@ export async function controlAllLights({
     : globalMaxBrightness;
 
   if (!color || !brightness || !controlType) return;
+
+  // TODO: WIP effects
+  if (config.effectsEnabled) {
+    removeEffect();
+    if ([EventType.RedFlag, EventType.YellowFlag].includes(event)) {
+
+      addEffect(homebridgeControl, { controlType, color, brightness, event });
+    }
+  }
 
   if (config.homeAssistantEnabled) {
     await homeAssistantControl({
@@ -127,6 +137,10 @@ export async function controlAllLights({
 
 export async function turnOffAllLights() {
   const config = await getConfig();
+
+  if (config.effectsEnabled) {
+    removeEffect();
+  }
 
   if (config.homeAssistantEnabled) {
     await homeAssistantControl({

@@ -37,6 +37,7 @@ export const eventTypeReadableMap: Record<EventType, string> = {
   LowGripConditions: "Low Grip Conditions",
   SessionStartAborted: "Session Start Aborted",
   DriveThroughPenalty: "Drive Through Penalty",
+  NewRaceLeader: "New Race Leader",
 };
 
 export enum EventType {
@@ -78,6 +79,7 @@ export enum EventType {
   LowGripConditions = "LowGripConditions",
   SessionStartAborted = "SessionStartAborted",
   DriveThroughPenalty = "DriveThroughPenalty",
+  NewRaceLeader = "NewRaceLeader",
 }
 
 export const actionTypeReadableMap: Record<ActionType, string> = {
@@ -126,6 +128,8 @@ export interface IConfig {
     g: number;
     b: number;
   };
+  goBackToStaticColorLeaderColor: boolean;
+  effectsEnabled: boolean;
   events: Event[];
   multiviewerLiveTimingURL: string;
   multiviewerCheck: boolean;

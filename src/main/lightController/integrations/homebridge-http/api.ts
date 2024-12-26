@@ -138,6 +138,7 @@ export async function homebridgeCheckDeviceSpectrum(uniqueId: string) {
     try {
         const res = await fetch(url, options);
         const data = await res.json();
+        console.log(data)
         if ("Hue" in data.values && "Saturation" in data.values) {
             log.debug("Homebridge accessory " + uniqueId + " supports spectrum.");
             return true;
@@ -173,7 +174,7 @@ export async function homebridgeControl({
     const config = await getConfig();
 
     const homebridgeAccessories = config.homebridgeAccessories;
-    brightness = Math.round((brightness / 100) * 254);
+    //brightness = Math.round((brightness / 100) * 254);
 
     const headers = {
         Authorization: "Bearer " + token,
@@ -219,6 +220,8 @@ export async function homebridgeControl({
                         value: brightness
                     }
                 ];
+
+                console.log(putData);
 
                 putData.forEach(async (data) => {
                     let options = {

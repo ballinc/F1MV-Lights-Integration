@@ -38,6 +38,7 @@ let errorCheck: boolean = false;
 export let liveTimingState: ILiveTimingData | undefined = undefined;
 let currentFastestLapTimeSeconds: number = 3600; // 1 hour
 let currentQualifyingPart: number | undefined = undefined;
+let currentRaceLeader: string | undefined = undefined;
 let previousTrackStatus: ITrackStatus | undefined = undefined;
 let previousSessionStatus: ISessionStatus | undefined = undefined;
 let processedRaceControlMessages: IRaceControlMessages = {
@@ -380,8 +381,8 @@ function checkForNewQualifyingPart() {
 
   const qualifyingPart = liveTimingState?.SessionData.Series
     ? liveTimingState?.SessionData.Series[
-        liveTimingState?.SessionData.Series.length - 1
-      ]?.QualifyingPart
+      liveTimingState?.SessionData.Series.length - 1
+    ]?.QualifyingPart
     : null;
 
   if (qualifyingPart === null) return;
@@ -392,6 +393,25 @@ function checkForNewQualifyingPart() {
     }
     currentQualifyingPart = qualifyingPart;
   }
+}
+
+function checkForNewRaceLeader(
+  TimingData: ITimingData["Lines"]
+) {
+  const leader = Object.values(TimingData ?? {})
+    .map((line) => {
+      // if (TimingStats[line.RacingNumber]?.PersonalBestLapTime.Position !== 1) {
+      //   return "";
+      // }
+      return line;
+    })
+    .filter((line) => line.Position == "1");
+
+  if (leader[0].RacingNumber !== currentRaceLeader) {
+    currentRaceLeader = leader[0].RacingNumber;
+    newEventHandler(EventType.NewRaceLeader);
+  }
+
 }
 
 export function startLiveTimingDataPolling() {
@@ -412,6 +432,7 @@ export function startLiveTimingDataPolling() {
       previousSessionStatus,
     );
     checkForNewEventsInRaceControlMessages(liveTimingData.RaceControlMessages);
+    checkForNewRaceLeader(liveTimingData.TimingData.Lines);
   }, 500);
 }
 
