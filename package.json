@@ -26,6 +26,7 @@
     "@mui/x-data-grid": "^7.21.0",
     "@q42philips/hue-color-converter": "^1.0.0",
     "@sentry/electron": "^5.6.0",
+    "artnet": "^1.4.0",
     "colortranslator": "^4.1.0",
     "cross-fetch": "^4.0.0",
     "deep-equal": "^2.2.3",

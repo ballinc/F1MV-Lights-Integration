@@ -36,6 +36,7 @@ import { HomebridgeServerHostInput } from "./HomebridgeServerHostInput";
 import { HomebridgeServerPortInput } from "./HomebridgeServerPortInput";
 import { HomebridgeServerUsername } from "./HomebridgeServerUsername";
 import { HomebridgeServerPassword } from "./HomebridgeServerPassword";
+import { ArtNetEnabledToggle } from "./ArtNetEnabledToggle";
 import { WLEDEnabledToggle } from "./WLEDEnabledToggle";
 import { MQTTEnabledToggle } from "./MQTTEnabledToggle";
 import { MQTTBrokerHostInput } from "./MQTTBrokerHostInput";
@@ -289,6 +290,20 @@ export function Settings() {
                 "This will enable the Govee integration, keep this disabled if you don't have Govee devices.",
               configKeys: ["goveeEnabled"],
               input: <GoveeEnabledToggle />,
+            },
+          ],
+        },
+        {
+          type: "subgroup",
+          title: "ArtNet",
+          settings: [
+            {
+              type: "setting",
+              title: "Enable ArtNet integration",
+              description:
+                "This will enable the ArtNet integration, keep this disabled if you don't want to output ArtNet.",
+              configKeys: ["artnetEnabled"],
+              input: <ArtNetEnabledToggle />,
             },
           ],
         },

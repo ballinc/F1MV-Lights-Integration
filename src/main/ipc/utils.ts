@@ -53,6 +53,11 @@ const handleGetIntegrationStates = async () => {
       disabled: !config.homebridgeEnabled,
     },
     {
+      name: "artnet",
+      state: integrationStates.artnet,
+      disabled: !config.artnetEnabled,
+    },
+    {
       name: "philipsHue",
       state: integrationStates.philipsHue,
       disabled: !config.philipsHueEnabled,

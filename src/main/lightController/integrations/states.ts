@@ -4,6 +4,7 @@ export const integrationStates = {
   f1tvLiveSession: false,
   homeAssistant: false,
   homebridge: false,
+  artnet: true, // TODO: don't do this
   philipsHue: false,
   govee: false,
   streamdeck: false,

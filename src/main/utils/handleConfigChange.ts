@@ -53,6 +53,11 @@ export async function handleConfigChange(
     await homebridgeInitialize();
   }
 
+  //artnet
+  if (!oldConfig.artnetEnabled && newConfig.artnetEnabled) {
+    // TODO: artnet initialize?
+  }
+
   //discord rpc
   if (!oldConfig.discordRPCEnabled && newConfig.discordRPCEnabled) {
     await registerDiscordRPC();
@@ -103,7 +108,7 @@ export async function handleConfigChange(
     } catch (error: any) {
       log.error(
         "Error while setting appIsActive to false, and closing the MQTT client: " +
-          error.message,
+        error.message,
       );
     }
   }

@@ -35,6 +35,13 @@ export async function initializeIntegrations() {
       enabled: globalConfig.homebridgeEnabled,
     },
     {
+      name: "artnet",
+      function: () => {
+        // Placeholder for artnet initialization
+      },
+      enabled: globalConfig.artnetEnabled,
+    },
+    {
       name: "philipsHue",
       function: philipsHueInitialize,
       enabled: globalConfig.philipsHueEnabled,

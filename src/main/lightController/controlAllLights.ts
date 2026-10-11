@@ -3,6 +3,7 @@ import { getConfig } from "../ipc/config";
 import { goveeControl } from "./integrations/govee/api";
 import { homeAssistantControl } from "./integrations/homeAssistant/api";
 import { homebridgeControl } from "./integrations/homebridge/api";
+import { artnetControl } from "./integrations/artnet/api";
 import { mqttControl } from "./integrations/mqtt/api";
 import { openrgbControl } from "./integrations/openrgb/api";
 import { philipsHueControl } from "./integrations/philipsHue/api";
@@ -62,6 +63,14 @@ export async function controlAllLights({
 
   if (config.homebridgeEnabled) {
     await homebridgeControl({
+      controlType,
+      color,
+      brightness,
+    });
+  }
+
+  if (config.artnetEnabled) {
+    await artnetControl({
       controlType,
       color,
       brightness,
@@ -151,6 +160,18 @@ export async function turnOffAllLights() {
 
   if (config.homebridgeEnabled) {
     await homebridgeControl({
+      controlType: ControlType.Off,
+      color: {
+        r: 0,
+        g: 0,
+        b: 0,
+      },
+      brightness: 100,
+    });
+  }
+
+  if (config.artnetEnabled) {
+    await artnetControl({
       controlType: ControlType.Off,
       color: {
         r: 0,

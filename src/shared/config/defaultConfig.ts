@@ -195,6 +195,7 @@ export const defaultConfig: IConfig = {
   homebridgeUsername: undefined,
   homebridgePassword: undefined,
   homebridgeAccessories: [],
+  artnetEnabled: false,
   wledEnabled: false,
   wledDevices: [],
   mqttEnabled: false,

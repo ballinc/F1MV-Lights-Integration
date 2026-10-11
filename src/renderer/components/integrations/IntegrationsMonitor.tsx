@@ -30,6 +30,7 @@ const integrationStateMap: {
   openrgb: "OpenRGB",
   homeAssistant: "Home Assistant",
   homebridge: "Homebridge",
+  artnet: "ArtNet",
   streamdeck: "Elgato Stream Deck",
   wled: "WLED",
   mqtt: "MQTT",
@@ -168,9 +169,8 @@ export function IntegrationsMonitor() {
                   }
                   action={
                     <div
-                      className={`status ${
-                        integrationState.state ? "success" : "error"
-                      }`}
+                      className={`status ${integrationState.state ? "success" : "error"
+                        }`}
                     ></div>
                   }
                   sx={{

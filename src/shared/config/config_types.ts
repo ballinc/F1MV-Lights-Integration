@@ -156,6 +156,7 @@ export interface IConfig {
   homebridgeUsername: string | undefined;
   homebridgePassword: string | undefined;
   homebridgeAccessories: string[];
+  artnetEnabled: boolean;
   wledEnabled: boolean;
   wledDevices: string[];
   mqttEnabled: boolean;
